@@ -5,22 +5,20 @@
  */
 package controllers;
 
-import dao.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.Usuario;
 
 /**
  *
  * @author daniel
  */
-@WebServlet(name = "ServletRegistroUsuario", urlPatterns = {"/signUp"})
-public class ServletRegistroUsuario extends HttpServlet {
+@WebServlet(name = "ServletArticuloByCategoria", urlPatterns = {"/categoria"})
+public class ServletArticuloByCategoria extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,31 +33,9 @@ public class ServletRegistroUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession session = request.getSession();
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
         
-        Usuario usuario = new Usuario();
-        
-        usuario.setUsername(request.getParameter("username"));
-        usuario.setCorreo(request.getParameter("email"));
-        usuario.setContraseña(request.getParameter("pass"));
-        usuario.setConfirmacion_contraseña(request.getParameter("pass_conf"));
-        
-        UserDAO userdao = new UserDAO();
-        
-        try {
-            usuario = userdao.crearUsuario(usuario);
-            
-            if(usuario != null){
-                session.setAttribute("usuario", usuario);
-                response.sendRedirect("categorias");
-            }else{
-                response.sendRedirect("newUser.jsp");
-            }
-            
-        }catch(Exception ex) {
-            ex.printStackTrace();
-            response.sendRedirect("newUser.jsp");
-        }
         
     }
 

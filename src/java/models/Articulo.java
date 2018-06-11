@@ -6,6 +6,7 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Clase articulo
@@ -16,7 +17,7 @@ public class Articulo {
     private String titulo, contenido, descripcion;
     private LocalDate fecha_creacion, fecha_actualizacion;
     private Usuario usuario;
-
+    private ArrayList<Categoria> categorias ;
    
     public Articulo(int id, String titulo, String contenido, String descripcion, LocalDate fecha_creacion, LocalDate fecha_actualizacion, Usuario usuario) {
         this.id = id;
@@ -28,6 +29,14 @@ public class Articulo {
         this.usuario = usuario;
     }
 
+    public ArrayList<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(ArrayList<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+    
     public int getId() {
         return id;
     }

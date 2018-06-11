@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.Usuario;
-import utils.Dispatcher;
 
 /**
  *
@@ -44,17 +43,23 @@ public class ServletIniciarSesion extends HttpServlet {
         UserDAO userdao = new UserDAO();
         
         Usuario user = userdao.getUserByEmailAndPass(email, pass);
-        System.out.println(user);
         
         if(user != null){
             sesion.setAttribute("usuario", user);
+            
+            response.sendRedirect("categorias");
+        }else{
+            response.sendRedirect("login.jsp"); 
         }
-        
-        Dispatcher.irAPagina(request, response, getServletContext(), "/categorias");             
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
     /**
      * Handles the HTTP <code>POST</code> method.
      *

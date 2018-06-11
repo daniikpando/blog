@@ -1,3 +1,4 @@
+<%@page import="models.Usuario"%>
 <%@page import="models.Categoria"%>
 <%@page import="java.util.List"%>
 <jsp:include page="WEB-INF/head.jsp">
@@ -7,8 +8,8 @@
 <%
     List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
 %>
-
 <div>
+    
     <h1>Categorias</h1>
     <% for(Categoria categoria :categorias  ) {%>
     <p>

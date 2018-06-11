@@ -13,9 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import models.Categoria;
-import models.Usuario;
 import utils.Dispatcher;
 
 /**
@@ -38,12 +36,12 @@ public class ServletCategorias extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        HttpSession sesion = request.getSession();
+        /*HttpSession sesion = request.getSession();
         
         Usuario u = (sesion.getAttribute("usuario") != null) ?  (Usuario)sesion.getAttribute("usuario") : null;
         
         if(u != null) System.out.println(u.getUsername());
-        
+        */
         List<Categoria> categorias = new CategoriaDAO().obtenerCategorias();
        
         request.setAttribute("categorias", categorias);
