@@ -16,8 +16,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author daniel
  */
-public class Dispatcher {
+public final class Dispatcher {
     
+    private Dispatcher(){}
+    
+    /**
+     * Sirve para redireccionar a otra pagina
+     * @param request es la peticion
+     * @param response es la respuesta  
+     * @param contexto es el servlet
+     * @param url la url a redireccionar
+     */
     public static void irAPagina(HttpServletRequest request, HttpServletResponse response, ServletContext contexto, String url)
             throws ServletException, IOException {
         RequestDispatcher despachador = contexto.getRequestDispatcher(url);

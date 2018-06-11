@@ -17,6 +17,12 @@ public class Usuario {
     private LocalDate fecha_creacion;
     private LocalDate fecha_actualizacion;
 
+    
+    /**
+     * Es un constructo vacio
+     */
+    public Usuario() {}
+    
     public Usuario(int id, String username, String correo, String contraseña, String confirmacion_contraseña, LocalDate fecha_creacion, LocalDate fecha_actualizacion) {
         this.id = id;
         this.username = username;
@@ -26,10 +32,7 @@ public class Usuario {
         this.fecha_creacion = fecha_creacion;
         this.fecha_actualizacion = fecha_actualizacion;
     }
-
-    public Usuario() {
-    }
-
+    
     public int getId() {
         return id;
     }

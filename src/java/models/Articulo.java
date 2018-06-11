@@ -17,9 +17,7 @@ public class Articulo {
     private LocalDate fecha_creacion, fecha_actualizacion;
     private Usuario usuario;
 
-    public Articulo() {
-    }
-
+   
     public Articulo(int id, String titulo, String contenido, String descripcion, LocalDate fecha_creacion, LocalDate fecha_actualizacion, Usuario usuario) {
         this.id = id;
         this.titulo = titulo;

@@ -1,28 +1,21 @@
+<jsp:include page="WEB-INF/head.jsp">
+    <jsp:param name="title" value="Iniciar sesion" />
+</jsp:include>
 
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Iniciar Sesi√≥n</title>
-    </head>
-    <body>
-        <h1>Iniciar sesion</h1>
-        <form action="login" method="POST">
-            <div>
-                <label>
-                    Email: <input type="email" placeholder="ingresa tu correo" name="email"> 
-                </label>
-            </div>
-            <div>
-                <label>
-                    Contrase√±a: <input type="password" placeholder="ingresa tu contrase√±a" name="pass"> 
-                </label>
-            </div>
-            <div>
-                <input type="submit" value="Enviar" />
-            </div>
-        </form>
-    </body>
-</html>
+<h1>Iniciar sesion</h1>
+<form action="login" method="POST">
+    <div>
+        <label>
+            Email: <input type="email" placeholder="ingresa tu correo" name="email"> 
+        </label>
+    </div>
+    <div>
+        <label>
+            ContraseÒa: <input type="password" placeholder="ingresa tu contraseÒa" name="pass"> 
+        </label>
+    </div>
+    <div>
+        <input type="submit" value="Enviar" />
+    </div>
+</form>
+<%@include file="WEB-INF/footer.html" %>

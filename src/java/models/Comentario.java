@@ -20,8 +20,7 @@ public class Comentario {
     private Articulo articulo;
 
     
-    public Comentario() {
-    }
+    public Comentario() {}
 
     public Comentario(int id, String contenido, LocalDate fecha_creacion, LocalDate fecha_actualizacion, Usuario usuario, Articulo articulo) {
         this.id = id;

@@ -18,8 +18,7 @@ public class CategoriaArticulo {
     private Categoria categoria;
     private Articulo articulo;
 
-    public CategoriaArticulo() {
-    }
+    public CategoriaArticulo() {}
 
     public CategoriaArticulo(int id, LocalDate fecha_creacion, LocalDate fecha_actualizacion, Categoria categoria, Articulo articulo) {
         this.id = id;

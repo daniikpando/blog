@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import models.Usuario;
+import utils.Resources;
 
 /**
  *
@@ -17,11 +18,11 @@ import models.Usuario;
  */
 public class UserDAO {
     
-    private final String GET_BY_EMAIL_AND_PASS = "SELECT id,username,correo, fecha_creacion, fecha_actualizacion FROM usuario WHERE correo= ? AND contrasena = ? ";
-    private final String CREATE_USER = "INSERT INTO usuario( username, correo, contrasena, confirmacion_contrasena) VALUES(?,?,?,?)";
+    private static final String GET_BY_EMAIL_AND_PASS = "SELECT id,username,correo, fecha_creacion, fecha_actualizacion FROM usuario WHERE correo= ? AND contrasena = ? ";
+    private static final String CREATE_USER = "INSERT INTO usuario( username, correo, contrasena, confirmacion_contrasena) VALUES(?,?,?,?)";
     
     private Connection conn;
-    private ResultSet rs; 
+    private ResultSet rs = null;
     private PreparedStatement stmt;
     
     
@@ -72,7 +73,7 @@ public class UserDAO {
             System.out.println(ex.getMessage());
         }
         finally{
-            cerrarRecursos();
+            Resources.closeResourcesSQL(conn, rs, stmt);
         }
         return u;
     }
@@ -85,19 +86,5 @@ public class UserDAO {
         u.setFecha_creacion(r.getDate("fecha_creacion").toLocalDate());
         u.setFecha_actualizacion(r.getDate("fecha_actualizacion").toLocalDate());
         return u;
-    }
-    
-    private void cerrarRecursos(){
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException sqle) {}
     }
 }

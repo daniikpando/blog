@@ -10,9 +10,9 @@ import javax.sql.DataSource;
  * Clase que me permite la conexion a la base de datos
  * @author daniel
  */
-public class ConnectionSQL {
+public final class ConnectionSQL {
     
-    
+    private ConnectionSQL(){}
     public static Connection getConnection() {
         Connection cn = null; 
         try {

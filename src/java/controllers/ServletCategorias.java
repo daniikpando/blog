@@ -5,15 +5,18 @@
  */
 package controllers;
 
+import dao.CategoriaDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.Categoria;
 import models.Usuario;
+import utils.Dispatcher;
 
 /**
  *
@@ -37,21 +40,15 @@ public class ServletCategorias extends HttpServlet {
         
         HttpSession sesion = request.getSession();
         
-        Usuario u = (Usuario)sesion.getAttribute("usuario");
+        Usuario u = (sesion.getAttribute("usuario") != null) ?  (Usuario)sesion.getAttribute("usuario") : null;
         
+        if(u != null) System.out.println(u.getUsername());
+        
+        List<Categoria> categorias = new CategoriaDAO().obtenerCategorias();
        
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletCategorias</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletCategorias at " + u.getUsername() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        request.setAttribute("categorias", categorias);
+        
+        Dispatcher.irAPagina(request, response, getServletContext(), "/categorias.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -30,6 +30,7 @@ public class Categoria {
         this.fechaCreacion = fechaCreacion;
         this.fechaActualizacion = fechaActualizacion;
     }
+
     
 
     /**
