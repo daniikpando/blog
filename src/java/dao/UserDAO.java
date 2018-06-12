@@ -27,7 +27,7 @@ public class UserDAO {
     
     
     public Usuario crearUsuario(Usuario usuario) throws Exception{ 
-        
+        Usuario user = null;
         try{
             if(usuario.getContraseña().equals(usuario.getConfirmacion_contraseña())){
                 conn = ConnectionSQL.getConnection();
@@ -40,7 +40,7 @@ public class UserDAO {
                 int rows = stmt.executeUpdate();
                 
                 if(rows == 1){
-                    usuario = getUserByEmailAndPass(usuario.getCorreo(), usuario.getContraseña());
+                    user = getUserByEmailAndPass(usuario.getCorreo(), usuario.getContraseña());
                 }else{
                     throw new Exception("No se creo un registro adecuado de un usuario");
                 }
@@ -50,7 +50,7 @@ public class UserDAO {
         }catch(SQLException ex){
             System.out.println(ex.getMessage());
         }
-        return usuario;
+        return user;
     }
     
     public Usuario getUserByEmailAndPass(String email, String pass){

@@ -49,11 +49,12 @@ public class ServletRegistroUsuario extends HttpServlet {
         try {
             usuario = userdao.crearUsuario(usuario);
             
-            if(usuario != null){
+            if(usuario == null){
+                response.sendRedirect("newUser.jsp");
+            }else{
                 session.setAttribute("usuario", usuario);
                 response.sendRedirect("categorias");
-            }else{
-                response.sendRedirect("newUser.jsp");
+            
             }
             
         }catch(Exception ex) {

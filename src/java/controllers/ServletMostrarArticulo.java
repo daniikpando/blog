@@ -5,19 +5,23 @@
  */
 package controllers;
 
+import dao.ArticuloDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Articulo;
+import utils.Dispatcher;
 
 /**
  *
  * @author daniel
  */
-@WebServlet(name = "ServletArticuloByCategoria", urlPatterns = {"/categoria"})
-public class ServletArticuloByCategoria extends HttpServlet {
+@WebServlet(name = "ServletMostrarArticulo", urlPatterns = {"/articulo"})
+public class ServletMostrarArticulo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,12 +36,20 @@ public class ServletArticuloByCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
         
+        if( request.getParameter("id").equals("") ){
+            
+            response.sendRedirect("/categorias");
+        }else{
+            int id = Integer.parseInt(request.getParameter("id"));
         
+            ArticuloDAO articulodao = new ArticuloDAO();
+            Articulo articulo = articulodao.obtenerArticulo(id);
+            
+            request.setAttribute("articulo", articulo);
+            Dispatcher.irAPagina(request, response, getServletContext(), "/showArticle.jsp");
+        }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

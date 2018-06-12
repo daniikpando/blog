@@ -5,19 +5,26 @@
  */
 package controllers;
 
+import dao.ArticuloDAO;
+import dao.CategoriaArticuloDAO;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.Articulo;
+import models.Usuario;
 
 /**
  *
  * @author daniel
  */
-@WebServlet(name = "ServletArticuloByCategoria", urlPatterns = {"/categoria"})
-public class ServletArticuloByCategoria extends HttpServlet {
+@WebServlet(name = "ServletGuardarArticulo", urlPatterns = {"/articulo/guardar"})
+public class ServletGuardarArticulo extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +39,38 @@ public class ServletArticuloByCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
+        HttpSession sesion = request.getSession();
         
+        Articulo articulo = new Articulo();
         
+        articulo.setTitulo(request.getParameter("titulo"));
+        articulo.setContenido(request.getParameter("contenido"));
+        articulo.setDescripcion(request.getParameter("descripcion"));
+        articulo.setUsuario( (Usuario)(sesion.getAttribute("usuario")) );
+        
+        String[] ids = request.getParameterValues("categoria");
+        int[] idCategorias = new int[ids.length];
+        
+        for(int i=0; i < ids.length; i++){
+            idCategorias[i] = Integer.parseInt(ids[i]);
+        }
+        
+        ArticuloDAO articulodao = new ArticuloDAO();
+        int idArticulo;
+        
+        try {
+            idArticulo = articulodao.insertarArticulo(articulo);
+            CategoriaArticuloDAO ca = new CategoriaArticuloDAO();
+            
+            for(int i=0; i<idCategorias.length; i++){
+                ca.insertarCategoriaArticulo(idCategorias[i], idArticulo);
+            }
+            
+            response.sendRedirect("/webapp/articulo?id="+idArticulo);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            response.sendRedirect("/webapp/articulo/nuevo");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

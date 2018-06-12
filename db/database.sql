@@ -70,3 +70,40 @@ alter table comentario
 add
 constraint comentario_usuario foreign key(id_usuario)
 references usuario(id);
+
+
+
+
+--- Store procedure
+
+/*insertarArticulo*/
+delimiter //
+create procedure insertarArticulo(in _titulo varchar(45), in _contenido varchar(45), in _descripcion varchar(45), in _id_usuario integer  )
+begin
+INSERT INTO articulo (titulo, contenido, descripcion, id_usuario) VALUES (_titulo,_contenido,_descripcion, _id_usuario);
+SELECT id_articulo FROM articulo
+ORDER BY id_articulo DESC
+LIMIT 1
+;
+end
+//
+delimiter ;
+
+call insertarArticulo('algo', 'algo', 'algo', 4);
+
+
+/*Obtener articulo*/
+delimiter //
+create procedure obtenerArticulo(in _id integer)
+begin
+SELECT a.id_articulo,  a.titulo, a.contenido, a.descripcion, a.fecha_creacion, a.fecha_actualizacion,
+u.username, u.correo
+FROM articulo AS a
+INNER JOIN usuario AS u
+ON a.id_usuario = u.id
+WHERE a.id_articulo = _id;
+end
+//
+delimiter ;
+
+call obtenerArticulo(1);

@@ -16,11 +16,29 @@
     <body>
         <div>
             <nav>
-                <% if(u == null ) {%>
-                    <a href="login.jsp" >Iniciar sesion</a> o <a href="newUser.jsp" >Crear cuenta</a> 
-                <%} else {%>
-                    <a href="cerrarSesion">Cerrar sesion</a>
-                <%}%>
+                <ul>
+                    
+                    <li>
+                        <a href="/webapp">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="/webapp/categorias">Categorias</a>
+                    </li>
+                    <% if(u != null ) {%>
+                        <li>
+                            <a href="/webapp/articulo/nuevo" >Crear articulo</a>
+                        </li>  
+                    <%}%>
+                    <li>
+                        
+                        <% if(u == null ) {%>
+                            <a href="/webapp/login.jsp" >Iniciar sesion</a> o <a href="/webapp/newUser.jsp" >Crear cuenta</a> 
+                        <%} else {%>
+                            <a href="/webapp/cerrarSesion">Cerrar sesion</a>
+                        <%}%>
+                    </li>
+                    
+                </ul>
             </nav>
         </div>
         

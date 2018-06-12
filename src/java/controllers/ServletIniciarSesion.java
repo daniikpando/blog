@@ -44,12 +44,11 @@ public class ServletIniciarSesion extends HttpServlet {
         
         Usuario user = userdao.getUserByEmailAndPass(email, pass);
         
-        if(user != null){
-            sesion.setAttribute("usuario", user);
-            
-            response.sendRedirect("categorias");
-        }else{
+        if(user == null){
             response.sendRedirect("login.jsp"); 
+        }else{
+            sesion.setAttribute("usuario", user);
+            response.sendRedirect("categorias");
         }
     }
 

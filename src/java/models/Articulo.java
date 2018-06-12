@@ -29,6 +29,10 @@ public class Articulo {
         this.usuario = usuario;
     }
 
+    public Articulo() {
+    }
+    
+    
     public ArrayList<Categoria> getCategorias() {
         return categorias;
     }
