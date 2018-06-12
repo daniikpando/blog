@@ -107,3 +107,22 @@ end
 delimiter ;
 
 call obtenerArticulo(1);
+
+
+/*Obtener articulos por categoria*/
+delimiter //
+create procedure obtenerArticuloPorCategoria(in _id integer)
+begin
+SELECT a.id_articulo,  a.titulo, a.contenido, a.descripcion, a.fecha_creacion, a.fecha_actualizacion,
+c.nombre
+FROM categoria_articulo AS ca
+INNER JOIN categoria AS c
+ON ca.id_categoria = c.id
+INNER JOIN articulo AS a
+ON ca.id_articulo = a.id_articulo
+WHERE ca.id_categoria = _id;
+end
+//
+delimiter ;
+
+call obtenerArticuloPorCategoria(1);

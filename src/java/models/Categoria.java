@@ -31,6 +31,8 @@ public class Categoria {
         this.fechaActualizacion = fechaActualizacion;
     }
 
+    public Categoria() {}
+
     
 
     /**

@@ -6,6 +6,8 @@
 package models;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * clase categoriaArticulo      
@@ -15,12 +17,15 @@ public class CategoriaArticulo {
     
     private int id;
     private LocalDate fecha_creacion, fecha_actualizacion; 
-    private Categoria categoria;
-    private Articulo articulo;
+    private List<Categoria> categoria;
+    private List<Articulo> articulo;
 
-    public CategoriaArticulo() {}
+    public CategoriaArticulo() {
+        categoria = new ArrayList<>();
+        articulo = new ArrayList<>();
+    }
 
-    public CategoriaArticulo(int id, LocalDate fecha_creacion, LocalDate fecha_actualizacion, Categoria categoria, Articulo articulo) {
+    public CategoriaArticulo(int id, LocalDate fecha_creacion, LocalDate fecha_actualizacion, List<Categoria> categoria, List<Articulo> articulo) {
         this.id = id;
         this.fecha_creacion = fecha_creacion;
         this.fecha_actualizacion = fecha_actualizacion;
@@ -52,21 +57,22 @@ public class CategoriaArticulo {
         this.fecha_actualizacion = fecha_actualizacion;
     }
 
-    public Categoria getCategoria() {
+    public List<Categoria> getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(List<Categoria> categoria) {
         this.categoria = categoria;
     }
 
-    public Articulo getArticulo() {
+    public List<Articulo> getArticulo() {
         return articulo;
     }
 
-    public void setArticulo(Articulo articulo) {
+    public void setArticulo(List<Articulo> articulo) {
         this.articulo = articulo;
     }
- 
+
+    
     
 }

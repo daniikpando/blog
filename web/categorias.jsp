@@ -13,7 +13,7 @@
     <h1>Categorias</h1>
     <% for(Categoria categoria :categorias  ) {%>
     <p>
-        <a href="/categoria?id=<%= categoria.getId() %>"><%= categoria.getNombre()%></a>
+        <a href="/webapp/categoria?id=<%= categoria.getId() %>"><%= categoria.getNombre()%></a>
     </p>
     <%}%>
 </div>

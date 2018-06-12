@@ -5,12 +5,15 @@
  */
 package controllers;
 
+import dao.CategoriaArticuloDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.CategoriaArticulo;
+import utils.Dispatcher;
 
 /**
  *
@@ -32,9 +35,18 @@ public class ServletArticuloByCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        int id = Integer.parseInt(request.getParameter("id"));
-        System.out.println(id);
         
+        if(request.getParameter("id").equals("")){
+            response.sendRedirect("/webapp/categorias");
+        }else{
+            int id = Integer.parseInt(request.getParameter("id"));
+            CategoriaArticuloDAO cadao= new CategoriaArticuloDAO();
+            
+            CategoriaArticulo ca = cadao.obtenerArticulosPorCategoria(id);
+            
+            request.setAttribute("categoriaArticulo", ca);
+            Dispatcher.irAPagina(request, response, getServletContext(), "/showCategoria.jsp");
+        }
         
     }
 
