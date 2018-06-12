@@ -4,7 +4,7 @@
 <jsp:include page="WEB-INF/head.jsp">
     <jsp:param name="title" value="Categorias" />
 </jsp:include>
-
+<!-- hola -->
 <%
     List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
 %>
