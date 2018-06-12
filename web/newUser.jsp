@@ -10,35 +10,42 @@
     <head>
         <meta charset="UTF-8">
         <title>Registrar usuario</title>
+        <link rel="stylesheet" href="css/estilo.css">
     </head>
     <body>
         <div class="container">
-            <h1>Crear usuario</h1>
+            <h1 id="title1"><center>Crear usuario</center></h1>
             
             <form action="signUp" method="POST">
-                <div>
+                <center>
+                    <div>
                     <label>
-                        Username: <input type="text" name="username" placeholder="Ingresar nombre de usuario" required>
+                        <input type="text" name="username" placeholder="Ingresar nombre de usuario" required class="new">
                     </label>
                 </div>
+                    <br>
                 <div>
                     <label>
-                        Email: <input type="email" name="email" placeholder="Ingresar email" required>
+                        <input type="email" name="email" placeholder="Ingresar email" required class="new">
                     </label>
                 </div>
-                <div>
+                    <br>
+                <div >
                     <label>
-                        Contraseña: <input type="password" name="pass" placeholder="Ingresar contraseña" required>
+                         <input type="password" name="pass" placeholder="Ingresar contraseña" required class="new">
                     </label>
                 </div>
+                    <br>
                 <div>
                     <label>
-                        Confirmar contraseña: <input type="password" name="pass_conf" placeholder="Ingresar confirmacion de contraseña" required>
-                    </label>
+                        <input type="password" name="pass_conf" placeholder="Ingresar confirmacion de contraseña" required class="new">
                 </div>    
-                <div>
-                    <input type="submit" value="Registrarse"/>
+                    <br>
+                <div class="new">
+                    <button type="submit">Registrarse</button>
+                    
                 </div>
+                </center>
             </form>
         </div>
     </body>
